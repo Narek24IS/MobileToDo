@@ -1,8 +1,8 @@
 from kivymd.uix.textfield import MDTextField
 from kivymd.uix.label import MDLabel
 from kivymd.uix.button import MDRaisedButton
-from screens.base import CustomScreen, USER_ID
-from database import initialize_db
+from screens.base import CustomScreen
+
 
 class LoginScreen(CustomScreen):
     def __init__(self, **kwargs):

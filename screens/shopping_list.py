@@ -4,7 +4,8 @@ from kivymd.uix.selectioncontrol import MDCheckbox
 from kivymd.uix.textfield import MDTextField
 from kivymd.uix.label import MDLabel
 from kivymd.uix.button import MDRaisedButton
-from screens.base import CustomScreen, USER_ID
+from screens.base import CustomScreen
+
 
 class ShoppingListScreen(CustomScreen):
     def __init__(self, **kwargs):
@@ -45,7 +46,7 @@ class ShoppingListScreen(CustomScreen):
 
         if item_name:
             self.cursor.execute('INSERT INTO shopping_list (item, price, purchased, user_id) VALUES (?, ?, ?, ?)',
-                                (item_name, float(price) if price else 0.0, 0, USER_ID))
+                                (item_name, float(price) if price else 0.0, 0, self.user_id))
             self.conn.commit()
 
             self.item_input.text = ''
@@ -115,9 +116,9 @@ class ShoppingListScreen(CustomScreen):
             self.update_item_list()
 
         return inner
+
     def update_total(self):
         self.cursor.execute('SELECT SUM(price) FROM shopping_list WHERE purchased = 1 AND user_id = ?', (self.user_id,))
         total = self.cursor.fetchone()[0] or 0.0
 
         self.message.text = f'Total Purchased: ${total:.2f}'
-

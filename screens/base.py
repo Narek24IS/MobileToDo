@@ -2,7 +2,6 @@ from kivy.uix.screenmanager import Screen
 from kivy.uix.boxlayout import BoxLayout
 import sqlite3
 
-USER_ID=0
 
 class CustomScreen(Screen):
     def __init__(self, **kwargs):
